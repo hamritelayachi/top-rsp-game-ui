@@ -46,6 +46,7 @@ function playRound(playerSelection) {
     const playerChoice = playerSelection;
     const winner = determineRoundWinner(playerChoice, computerChoice);
     updateScore(winner);
+    updateRoundResult(winner);
 }
 
 // get player choice 
@@ -68,5 +69,15 @@ function updateScore(winner) {
     } else  if (winner === 'tie'){
         ++drawsCount;
         drawsCountElem.textContent = drawsCount;
+    }
+}
+
+function updateRoundResult(winner) {
+    if (winner === 'human') {
+        roundResElem.textContent = '🎉 Victory! You won the round!';
+    } else if (winner === 'computer') {
+        roundResElem.textContent = '🤖 The computer wins this round!'
+    } else {
+        roundResElem.textContent = '🤝 It’s a tie! Great minds think alike!';
     }
 }
