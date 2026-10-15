@@ -16,8 +16,10 @@ const optionsElems = document.querySelectorAll('.option');
 let playerScore = 0;
 let computerScore = 0;
 let drawsCount = 0;
-let roundsCount = 0;
+let roundsCount = 1;
 const MAX_ROUNDS = 3;
+
+totalRoundElem.textContent = MAX_ROUNDS;
 
 // Randomly selects and returns the computer's choice.
 function getComputerChoice() {
@@ -58,6 +60,11 @@ optionsElems.forEach( option => {
     })
 })
 
+// rest and start new gridTemplateAreas: 
+newGameBtn.addEventListener('click', () => {
+    resetGame();
+})
+
 function updateScore(winner) {
     if(winner === 'player') {
         ++playerScore;
@@ -73,6 +80,7 @@ function updateScore(winner) {
 }
 
 function updateRoundResult(winner) {
+    
     if (winner === 'human') {
         roundResElem.textContent = '🎉 Victory! You won the round!';
     } else if (winner === 'computer') {
@@ -80,4 +88,27 @@ function updateRoundResult(winner) {
     } else {
         roundResElem.textContent = '🤝 It’s a tie! Great minds think alike!';
     }
+}
+
+function resetGame() {
+    
+    // reset game variables
+    roundsCount = 0;
+    computerScore = 0;
+    playerScore = 0;
+    drawsCount = 0;
+
+    // Reset the page
+    playerScoreElem.textContent = 0;
+    computerScoreElem.textContent = 0;
+    drawsCountElem.textContent = 0;
+    currentRoundElem.textContent = 0;
+
+    playerChoiceImgElem.src = '';
+    computerChoiceImgElem.src = '';
+    playerChoiceNameElem.textContent = '';
+    computerChoiceNameElem.textContent = '';
+
+    roundResElem.textContent = '';
+    gameResElem.textContent = '';
 }
