@@ -9,7 +9,79 @@
 </head>
 <body>
     
+<div class="main-container">
 
+    <div class="header">
+        <h1 class="game-title">RSP Game</h1>
+        <button type="button" class="new-game-button">New Game</button>
+    </div>
+
+    <div class="scoreboard">
+        <div class="score player"> 
+            <span class="label">Player</span>
+            <span class="value player-score">0</span>
+        </div>
+
+        <div class="score rounds"> 
+            <span class="label">Rounds</span>
+            <span class="value rounds-count">0</span>
+        </div>
+
+        <div class="score computer"> 
+            <span class="label">Computer</span>
+            <span class="value computer-score">0</span>
+        </div>
+    </div>
+
+
+
+    <div class="game-progress">
+        <span class="label">Round</span>
+        <span class="current-round">0</span>
+        <span class="label">/</span>
+        <span class="total-rounds">0</span>
+    </div>
+
+    <div class="choices">
+        <div class="choice player-choice">
+            <img class="choice-img player-choice-img" src="" alt="">
+            <span class="choice-name player-choice-name"></span>
+        </div>
+         <div class="choice computer-choice">
+            <img  class="choice-img computer-choice-img" src="" alt="">
+            <span class="choice-name computer-choice-name"></span>
+        </div>
+    </div>
+
+    <div class="round-result">
+        <h2 class="round-result-message"></h2>
+    </div>
+
+    <div class="options">
+       
+        <h2 class="options-title">Make your move</h2>
+        
+        <a class="option" href="#" data-value="rock">
+            <!-- <img class="option-img" src="images/rock.png" alt="">-->
+            <span class="option-name">Rock</span>
+        </a>
+
+        <a class="option" href="#" data-value="paper">
+            <!-- <img class="option-img" src="images/paper.png" alt="">-->
+            <span class="option-name">Paper</span>
+        </a>
+
+        <a class="option" href="#" data-value="scissors">
+            <!-- <img class="option-img" src="images/scissors.png" alt=""> -->
+            <span class="option-name">Scissors</span>
+        </a>
+
+    </div>
+
+    <div class="game-final-result">
+        <h2 class="result-message"></h2>
+    </div>
+</div>
 
 
 <!-- Javascript file-->
