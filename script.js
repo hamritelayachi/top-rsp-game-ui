@@ -25,3 +25,20 @@ function getComputerChoice() {
     let randomIndex = Math.floor(Math.random() * options.length);
     return options[randomIndex];
 }
+
+
+
+//  round winner determination logic
+function determineRoundWinner(humanSelection, computerSelection) {
+    if (humanSelection === computerSelection) {
+        return 'tie';
+    } else if (
+        (humanSelection === 'rock' && computerSelection === 'scissors') ||
+        (humanSelection === 'paper' && computerSelection === 'rock') ||
+        (humanSelection === 'scissors' && computerSelection === 'paper')
+    ) {
+        return 'human';
+    } else { 
+        return 'computer';
+    }
+}
