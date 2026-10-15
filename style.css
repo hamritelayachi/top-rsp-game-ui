@@ -1,0 +1,251 @@
+/* ---------- Base ---------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #ffcc5c;
+    --card: #fffdf7;
+    --ink: #111;
+    --coral: #ff6b6b;
+    --green: #8ce99a;
+    --blue: #a5d8ff;
+    --border: 3px solid var(--ink);
+    --radius: 14px;
+    --shadow: 4px 4px 0 var(--ink);
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2.5rem 1rem;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 500;
+    color: var(--ink);
+    background: var(--bg);
+}
+
+/* ---------- Card ---------- */
+.main-container {
+    width: 100%;
+    max-width: 560px;
+    padding: 1.75rem;
+    background: var(--card);
+    border: var(--border);
+    border-radius: 20px;
+    box-shadow: 10px 10px 0 var(--ink);
+    transform: rotate(-1.5deg);
+}
+
+/* ---------- Header ---------- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.game-title {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+/* ---------- Button and options ---------- */
+.new-game-button,
+.option {
+    font-family: inherit;
+    font-weight: 800;
+    color: var(--ink);
+    text-decoration: none;
+    cursor: pointer;
+    border: var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.new-game-button {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    background: var(--coral);
+}
+
+.option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    flex: 1;
+    min-width: 110px;
+    padding: 0.75rem;
+    background: #fff;
+}
+
+/* emojis, so it works while images are commented out */
+.option::before {
+    font-size: 2.4rem;
+    line-height: 1.1;
+}
+.option[data-value="rock"]::before     { content: "🪨"; }
+.option[data-value="paper"]::before    { content: "📄"; }
+.option[data-value="scissors"]::before { content: "✂️"; }
+
+.new-game-button:hover,
+.option:hover,
+.option:focus-visible {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--ink);
+}
+
+.option:hover,
+.option:focus-visible {
+    background: var(--coral);
+}
+
+.new-game-button:active,
+.option:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0 0 0 var(--ink);
+}
+
+/* ---------- Scoreboard ---------- */
+.scoreboard {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.score {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.6rem;
+    background: #fff;
+    border: var(--border);
+    border-radius: var(--radius);
+}
+
+.score.player   { background: var(--green); }
+.score.computer { background: var(--coral); }
+
+.label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.value {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+/* ---------- Round counter ---------- */
+.game-progress {
+    display: inline-block;
+    margin-bottom: 1.25rem;
+    padding: 0.3rem 1rem;
+    font-weight: 800;
+    background: var(--blue);
+    border: var(--border);
+    border-radius: 999px;
+}
+
+/* ---------- Choices ---------- */
+.choices {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.choice {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75rem;
+    background: #fff;
+    border: var(--border);
+    border-radius: var(--radius);
+}
+
+.choice-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+/* hide the broken-image icon while src is empty */
+img[src=""] {
+    visibility: hidden;
+}
+
+.choice-name {
+    min-height: 1.5rem;
+    font-weight: 800;
+    text-transform: capitalize;
+}
+
+/* ---------- Messages ---------- */
+.round-result,
+.game-final-result {
+    margin-bottom: 1rem;
+}
+
+.round-result-message {
+    min-height: 1.75rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.game-result-message {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    font-size: 1.3rem;
+    font-weight: 800;
+    background: var(--bg);
+    border: var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+/* hide the empty box until there is a message */
+.game-result-message:empty {
+    display: none;
+}
+
+/* ---------- Options area ---------- */
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.options-title {
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 800;
+    text-align: left;
+}
+
+.option-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 480px) {
+    .main-container { padding: 1.25rem; transform: none; }
+    .header { flex-direction: column; align-items: flex-start; }
+    .option { min-width: 90px; }
+}
