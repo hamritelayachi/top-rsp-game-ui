@@ -35,7 +35,7 @@ function determineRoundWinner(humanSelection, computerSelection) {
         (humanSelection === 'paper' && computerSelection === 'rock') ||
         (humanSelection === 'scissors' && computerSelection === 'paper')
     ) {
-        return 'human';
+        return 'player';
     } else { 
         return 'computer';
     }
@@ -45,8 +45,7 @@ function playRound(playerSelection) {
     const computerChoice = getComputerChoice();
     const playerChoice = playerSelection;
     const winner = determineRoundWinner(playerChoice, computerChoice);
-    console.log(winner);
-    
+    updateScore(winner);
 }
 
 // get player choice 
@@ -57,3 +56,17 @@ optionsElems.forEach( option => {
         playRound(selection);
     })
 })
+
+function updateScore(winner) {
+    if(winner === 'player') {
+        ++playerScore;
+        playerScoreElem.textContent = playerScore;
+    } else if (winner === 'computer') {
+        ++computerScore;
+        computerScoreElem.textContent = computerScore;
+
+    } else  if (winner === 'tie'){
+        ++drawsCount;
+        drawsCountElem.textContent = drawsCount;
+    }
+}
