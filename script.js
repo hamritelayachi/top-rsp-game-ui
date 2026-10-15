@@ -1,7 +1,7 @@
 const playerScoreElem = document.querySelector('.player-score');
 const computerScoreElem = document.querySelector('.computer-score');
 const drawsCountElem = document.querySelector('.draws-count');
-const currentRoundElem = document.querySelector('.current-round');
+const currentRoundElem = document.querySelector('.current-round-counter');
 const totalRoundElem = document.querySelector('.total-rounds');
 const playerChoiceImgElem = document.querySelector('.player-choice-img');
 const computerChoiceImgElem = document.querySelector('.computer-choice-img');
@@ -15,12 +15,11 @@ const optionsElems = document.querySelectorAll('.option');
 // Initialize the game variables
 let playerScore = 0;
 let computerScore = 0;
-let drawsCount = 0;
-let roundsCount = 1;
+let drawsCount = 1;
+let roundsCount = 1; 
 const MAX_ROUNDS = 3;
 
 totalRoundElem.textContent = MAX_ROUNDS;
-
 // Randomly selects and returns the computer's choice.
 function getComputerChoice() {
     const options = ['rock', 'scissors', 'paper'];
@@ -38,17 +37,36 @@ function determineRoundWinner(humanSelection, computerSelection) {
         (humanSelection === 'scissors' && computerSelection === 'paper')
     ) {
         return 'player';
-    } else { 
+    } else {  
         return 'computer';
     }
 }
 
 function playRound(playerSelection) {
+
+    if (roundsCount > MAX_ROUNDS) return;
+
+    console.log(roundsCount);
+    
     const computerChoice = getComputerChoice();
     const playerChoice = playerSelection;
+    showChoice(playerChoiceImgElem, playerChoiceNameElem, playerChoice);
+    showChoice(computerChoiceImgElem, computerChoiceNameElem, computerChoice);
+
     const winner = determineRoundWinner(playerChoice, computerChoice);
+
     updateScore(winner);
+       roundsCount++;
+    // Never show 4 / 3 after the last round
+    currentRoundElem.textContent =  Math.min(roundsCount, MAX_ROUNDS);;
+
     updateRoundResult(winner);
+
+     // Show the final result right after the last round
+    if (roundsCount > MAX_ROUNDS) {
+        const gameWinner = determineGameWinner(playerScore, computerScore);
+        updateFinalResult(gameWinner);
+    }
 }
 
 // get player choice 
@@ -80,8 +98,7 @@ function updateScore(winner) {
 }
 
 function updateRoundResult(winner) {
-    
-    if (winner === 'human') {
+    if (winner === 'player') {
         roundResElem.textContent = '🎉 Victory! You won the round!';
     } else if (winner === 'computer') {
         roundResElem.textContent = '🤖 The computer wins this round!'
@@ -90,8 +107,12 @@ function updateRoundResult(winner) {
     }
 }
 
+function showChoice(imgElem, nameElem, choice){
+    imgElem.src = `res/${choice}.png`;
+    nameElem.textContent = choice;
+}
+
 function resetGame() {
-    
     // reset game variables
     roundsCount = 0;
     computerScore = 0;
@@ -111,4 +132,26 @@ function resetGame() {
 
     roundResElem.textContent = '';
     gameResElem.textContent = '';
+}
+
+function updateFinalResult(gameWinner) {
+    if (gameWinner === 'player') {
+        gameResElem.textContent = '🏆 You won the game!';
+
+    } else if (gameWinner === 'computer') {
+        gameResElem.textContent = '🤖 The computer won the game!';
+
+    } else {
+        gameResElem.textContent = '🤝 The game ended in a tie!';
+    }
+}
+
+function determineGameWinner(player_score, computer_score) {
+    if (player_score > computer_score) {
+        return 'player';
+    } else if (computer_score > player_score) {
+        return 'computer'
+    } else {
+        return 'tie';
+    }
 }
