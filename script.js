@@ -26,8 +26,6 @@ function getComputerChoice() {
     return options[randomIndex];
 }
 
-
-
 //  round winner determination logic
 function determineRoundWinner(humanSelection, computerSelection) {
     if (humanSelection === computerSelection) {
@@ -42,3 +40,20 @@ function determineRoundWinner(humanSelection, computerSelection) {
         return 'computer';
     }
 }
+
+function playRound(playerSelection) {
+    const computerChoice = getComputerChoice();
+    const playerChoice = playerSelection;
+    const winner = determineRoundWinner(playerChoice, computerChoice);
+    console.log(winner);
+    
+}
+
+// get player choice 
+optionsElems.forEach( option => {
+    option.addEventListener('click', (event) => {
+        event.preventDefault();
+        const selection = option.dataset.value;
+        playRound(selection);
+    })
+})
