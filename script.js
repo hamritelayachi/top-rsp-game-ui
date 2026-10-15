@@ -11,3 +11,11 @@ const roundResElem = document.querySelector('.round-result-message');
 const gameResElem = document.querySelector('.game-result-message');
 const newGameBtn = document.querySelector('.new-game-button');
 const optionsElems = document.querySelectorAll('.option');
+
+// Initialize the game variables
+let playerScore = 0;
+let computerScore = 0;
+let drawsCount = 0;
+let roundsCount = 0;
+const MAX_ROUNDS = 3;
+
